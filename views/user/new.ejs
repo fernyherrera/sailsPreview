@@ -1,0 +1,20 @@
+<h1>Create a new user</h1>
+
+<% if(flash && flash.err) { %>
+	<ul>
+	<% Object.keys(flash.err).forEach(function(error) { %>
+		<li><%- JSON.stringify(flash.err[error]) %></li>
+	<% }) %>
+	</ul>
+<% } %>
+
+<form action="/user/create" method="post">
+	<input type="text" placeholder="your name" name="name"><br>
+	<input type="text" placeholder="your title" name="title"><br>
+	<input type="email" placeholder="email" name="email"><br>
+	<input type="password" placeholder="password" name="password"><br>
+	<input type="password" placeholder="confirmation" name="confirmation"><br>
+	<input type="submit" value="Submit"><br>
+	<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+	</form>
+

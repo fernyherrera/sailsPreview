@@ -1,0 +1,17 @@
+<form action="/user/update/<%= user.id %>" method="post">
+	<h2>Edit user</h2>
+	<input type="text" value="<%= user.name %>" name="name"><br>
+	<input type="text" value="<%= user.title %>" name="title"><br>
+	<input type="text" value="<%= user.email %>" name="email"><br>
+	<% if (session.authenticated && session.User.admin) { %>
+		<% if (user.admin) { %>
+			<input type="hidden" name="admin" value="unchecked"><br>
+			<label><input type="checkbox" name="admin" checked>Admin</label><br>
+		<% } else { %>
+			<input type="hidden" name="admin" value="unchecked"><br>
+			<label><input type="checkbox" name="admin">Admin</label><br>
+		<% } %>
+	<% } %>
+	<input type="submit" value="Update"><br>
+	<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+</form>
